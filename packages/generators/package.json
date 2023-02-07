@@ -1,0 +1,10 @@
+{
+  "name": "generators",
+  "version": "1.0.0",
+  "description": "Plop generators templates and tooling",
+  "type": "module",
+  "license": "MIT",
+  "devDependencies": {
+    "plop": "^3.1.1"
+  }
+}

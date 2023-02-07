@@ -1,0 +1,9 @@
+import { {{camelCase name}}Styles } from "./{{pascalCase name}}.styles";
+import { {{pascalCase name}}Props } from "./{{pascalCase name}}.types";
+import cn from "classnames";
+
+const {{pascalCase name}} = (props: {{pascalCase name}}Props): JSX.Element => {
+  return <div className={cn({{camelCase name}}Styles(props))}>Hello world</div>;
+};
+
+export default {{pascalCase name}};

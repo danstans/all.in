@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btn {
+    @apply flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10;
+  }
+}
