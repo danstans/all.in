@@ -1,0 +1,35 @@
+name: on-merge-main
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy-migration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.16.0
+          cache: "yarn"
+      - run: yarn
+      - name: Run production migration
+        run: yarn run db:deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
+  create-release:
+    runs-on: ubuntu-latest
+      steps:
+       - name: Get current date
+          id: date
+          run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      - uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: {{release-${{ steps.date.outputs.date }}}}
+          files: |
+            LICENSE.txt
+            *.jar
