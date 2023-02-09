@@ -1,0 +1,34 @@
+name: deploy-db
+on:
+  push:
+    branches:
+      - "staging"
+      - "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/staging' # Only deploy master
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.16.0
+          cache: "yarn"
+      - run: yarn
+      - name: Run production migration
+        run: yarn run db:deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.16.0
+          cache: "yarn"
+      - run: yarn
+      - name: Run production migration
+        run: yarn run db:deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
