@@ -1,0 +1,20 @@
+name: on-merge-staging
+on:
+  push:
+    branches:
+      - "staging"
+
+jobs:
+  deploy-migration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.16.0
+          cache: "yarn"
+      - run: yarn
+      - name: Run production migration
+        run: yarn run db:deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_STAGING }}
