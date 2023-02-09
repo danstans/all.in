@@ -5,17 +5,17 @@ import { signIn, signOut } from "next-auth/react";
 import Button from "shared";
 import { api, type RouterOutputs } from "~/utils/api";
 
-const PostCard: React.FC<{
-  post: RouterOutputs["post"]["all"][number];
-  onPostDelete?: () => void;
-}> = ({ post, onPostDelete }) => {
+const EventCard: React.FC<{
+  event: RouterOutputs["event"]["all"][number];
+  onEventDelete?: () => void;
+}> = ({ event, onEventDelete: onPostDelete }) => {
   return (
     <div className="flex w-full max-w-2xl flex-row rounded-lg bg-white/10 p-4 transition-all hover:scale-[101%]">
       <div className="flex-grow">
         <h2 className="text-2xl font-bold text-[hsl(280,100%,70%)]">
-          {post.title || <i>Untitled</i>}
+          {event.title || <i>Untitled</i>}
         </h2>
-        <p className="mt-2 text-sm">{post.content || <i>No content</i>}</p>
+        <p className="mt-2 text-sm">{event.description || <i>No content</i>}</p>
       </div>
       <div>
         <span
@@ -33,13 +33,13 @@ const CreatePostForm: React.FC = () => {
   const utils = api.useContext();
 
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+  const [description, setDescription] = useState("");
 
-  const { mutate } = api.post.create.useMutation({
+  const { mutate } = api.event.create.useMutation({
     async onSuccess() {
       setTitle("");
-      setContent("");
-      await utils.post.all.invalidate();
+      setDescription("");
+      await utils.event.all.invalidate();
     },
   });
 
@@ -53,16 +53,17 @@ const CreatePostForm: React.FC = () => {
       />
       <input
         className="mb-2 rounded bg-white/10 p-2 text-white"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-        placeholder="Content"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+        placeholder="Description"
       />
       <button
         className="rounded bg-pink-700 p-2 font-bold"
         onClick={() => {
           mutate({
             title,
-            content,
+            description,
+            visibility: "ATTENDEES",
           });
         }}
       >
@@ -73,10 +74,10 @@ const CreatePostForm: React.FC = () => {
 };
 
 const Home: NextPage = () => {
-  const postQuery = api.post.all.useQuery();
+  const eventQuery = api.event.all.useQuery();
 
-  const deletePostMutation = api.post.delete.useMutation({
-    onSettled: () => postQuery.refetch(),
+  const deleteEventMutation = api.event.delete.useMutation({
+    onSettled: () => eventQuery.refetch(),
   });
 
   return (
@@ -88,29 +89,23 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex h-screen flex-col items-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
         <div className="container mt-12 flex flex-col items-center justify-center gap-4 px-4 py-8">
-          <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Create <span className="text-[hsl(280,100%,70%)]">T3</span> Turbo
-          </h1>
-          <h2 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
-            Hello world
-          </h2>
           <AuthShowcase />
 
           <CreatePostForm />
 
-          {postQuery.data ? (
+          {eventQuery.data ? (
             <div>
-              {postQuery.data?.length === 0 ? (
-                <span>There are no posts!</span>
+              {eventQuery.data?.length === 0 ? (
+                <span>There are no events!</span>
               ) : (
                 <div className="flex h-[40vh] w-[80vw] justify-center overflow-y-scroll px-4 text-2xl md:w-[60vw] xl:w-[35vw]">
                   <div className="flex w-full flex-col gap-4">
-                    {postQuery.data?.map((p) => {
+                    {eventQuery.data?.map((p) => {
                       return (
-                        <PostCard
+                        <EventCard
                           key={p.id}
-                          post={p}
-                          onPostDelete={() => deletePostMutation.mutate(p.id)}
+                          event={p}
+                          onEventDelete={() => deleteEventMutation.mutate(p.id)}
                         />
                       );
                     })}

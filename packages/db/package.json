@@ -7,8 +7,9 @@
   "scripts": {
     "clean": "rm -rf .turbo node_modules",
     "db:generate": "yarn with-env prisma generate",
-    "db:push": "yarn with-env prisma db push --skip-generate",
-    "db:deploy": "yarn with-env prisma db push --skip-generate",
+    "db:migrate": "yarn with-env prisma migrate dev --schema ./prisma/schema.prisma --skip-generate",
+    "db:reset": "yarn with-env prisma migrate reset --force",
+    "db:deploy": "yarn with-env prisma migrate deploy",
     "dev": "yarn with-env prisma studio --port 5556",
     "with-env": "dotenv -e ../../.env --"
   },

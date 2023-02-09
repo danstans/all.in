@@ -5,7 +5,11 @@
       "inputs": ["prisma/schema.prisma"],
       "cache": false
     },
-    "db:push": {
+    "db:migrate": {
+      "inputs": ["prisma/schema.prisma"],
+      "cache": false
+    },
+    "db:reset": {
       "inputs": ["prisma/schema.prisma"],
       "cache": false
     },

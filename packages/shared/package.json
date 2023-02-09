@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "TIMING=1 eslint .",
     "lint:fix": "TIMING=1 eslint . --fix",
-    "dev:ui": "npx tailwindcss -p -i ./src/styles/main.css -o ./dist/dist.css --watch"
+    "dev:ui": "npx tailwindcss -p -i ./src/styles/main.css -o ./dist/dist.css && npx tailwindcss -p -i ./src/styles/main.css -o ./dist/dist.css --watch"
   },
   "dependencies": {
     "@react-aria/button": "^3.6.4",
