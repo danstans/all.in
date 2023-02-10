@@ -1,8 +1,11 @@
 import { ForwardedRef, PropsWithChildren } from "react";
 import type { ButtonStyleProps } from "./Button.styles";
 
-export type ButtonProps = ButtonStyleProps &
+export type ButtonProps = Omit<ButtonStyleProps, "style" | "size"> &
   PropsWithChildren<{
+    variant: `${NonNullable<ButtonStyleProps["style"]>}/${NonNullable<
+      ButtonStyleProps["size"]
+    >}`;
     /** A React ref to attach to the rendered Button */
     ref?: ForwardedRef<HTMLButtonElement>;
     /** An HTML ID attribute that will be attached to the the rendered component.

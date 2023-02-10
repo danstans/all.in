@@ -1,5 +1,5 @@
 import { RefObject, forwardRef, useRef } from "react";
-import { buttonStyles } from "./Button.styles";
+import { ButtonStyleProps, buttonStyles } from "./Button.styles";
 import { ButtonProps } from "./Button.types";
 import { useButton } from "@react-aria/button";
 import { useHover } from "@react-aria/interactions";
@@ -35,13 +35,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     const { hoverProps } = useHover({ isDisabled: isLoadingOrDisabled });
+    const [style, size] = variant.split("/") as [
+      ButtonStyleProps["style"],
+      ButtonStyleProps["size"],
+    ];
 
     return (
       <button
         ref={buttonRef}
         {...mergeProps(hoverProps, buttonProps)}
         type="button"
-        className={cn(buttonStyles({ variant, fullWidth, pill }))}
+        className={cn(buttonStyles({ style, size, fullWidth, pill }))}
         onClick={onClick}
       >
         {children}

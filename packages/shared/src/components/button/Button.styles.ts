@@ -4,7 +4,7 @@ export const buttonStyles = cva(
   "group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10",
   {
     variants: {
-      variant: {
+      style: {
         primary:
           "text-white bg-primary-700 border border-transparent hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 disabled:hover:bg-primary-700 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:disabled:hover:bg-primary-600",
         secondary: "text-white bg-secondary-800 hover:bg-secondary-900",
@@ -28,13 +28,13 @@ export const buttonStyles = cva(
     },
     compoundVariants: [
       {
-        variant: "primary",
+        style: "primary",
         pill: true,
         class: "hidden",
       },
     ],
     defaultVariants: {
-      variant: "primary",
+      style: "primary",
       size: "md",
       fullWidth: false,
       pill: false,
