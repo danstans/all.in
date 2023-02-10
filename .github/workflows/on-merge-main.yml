@@ -20,16 +20,18 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
   create-release:
-    name: create release
+    name: create release action
     runs-on: ubuntu-latest
     steps:
       - name: Get current date
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-      - uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Create release
+        uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
+          prerelease: false
           title: {{release-${{ steps.date.outputs.date }}}}
           files: |
             *
