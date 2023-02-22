@@ -43,6 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type="button"
         className={cn(buttonStyles({ variant, fullWidth, pill }))}
         onClick={onClick}
+        disabled={isLoadingOrDisabled}
       >
         {children}
       </button>

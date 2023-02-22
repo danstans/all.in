@@ -3,9 +3,8 @@ import type {
   NextApiRequest,
   NextApiResponse,
 } from "next";
-import { getServerSession as $getServerSession } from "next-auth";
-
 import { authOptions } from "./auth-options";
+import { getServerSession as $getServerSession } from "next-auth";
 
 type GetServerSessionContext =
   | {
