@@ -17,7 +17,7 @@ export type ButtonProps = Omit<ButtonStyleProps, "color" | "style"> &
     /** Controls if this button should steal focus when mounted */
     autoFocus?: boolean;
     // A callback called when the button is clicked
-    onClick: () => void;
+    onClick?: () => void;
     /** Controls if the button shows Loader */
     isLoading?: boolean;
     /** Controls if this button is disabled */

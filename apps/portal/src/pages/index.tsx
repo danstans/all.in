@@ -2,8 +2,11 @@ import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { signIn, signOut } from "next-auth/react";
-import Button from "shared";
+import { Button, Menu } from "shared";
 import { api, type RouterOutputs } from "~/utils/api";
+
+import "@szhsin/react-menu/dist/index.css";
+import "@szhsin/react-menu/dist/transitions/slide.css";
 
 const PostCard: React.FC<{
   post: RouterOutputs["post"]["all"][number];
@@ -68,6 +71,7 @@ const CreatePostForm: React.FC = () => {
       >
         Create
       </button>
+      <Menu></Menu>
     </div>
   );
 };

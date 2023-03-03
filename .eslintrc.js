@@ -34,6 +34,14 @@ const config = {
             extendDefaults: true,
           },
         ],
+        "@typescript-eslint/no-misused-promises": [
+          2,
+          {
+            checksVoidReturn: {
+              attributes: false,
+            },
+          },
+        ],
       },
     },
   ],

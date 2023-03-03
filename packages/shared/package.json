@@ -11,14 +11,17 @@
   "scripts": {
     "lint": "TIMING=1 eslint .",
     "lint:fix": "TIMING=1 eslint . --fix",
-    "dev:ui": "npx tailwindcss -p -i ./src/styles/main.css -o ./dist/dist.css --watch"
+    "dev:ui": "npx tailwindcss -p -i ./src/styles/main.css -o ./dist/dist.css"
   },
   "dependencies": {
     "@react-aria/button": "^3.6.4",
     "@react-aria/interactions": "^3.13.1",
     "@react-aria/utils": "^3.14.2",
+    "@szhsin/react-menu": "^3.4.1",
     "classnames": "^2.3.2",
-    "cva": "npm:class-variance-authority"
+    "cva": "npm:class-variance-authority",
+    "react-hook-form": "^7.43.3",
+    "react-select": "^5.7.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.26",

@@ -1,3 +1,5 @@
 import Button from "./src/components/button/Button";
+import Menu from "./src/components/menu/Menu";
+import TextField from "./src/components/text-field/TextField";
 
-export default Button;
+export { Button, Menu, TextField };

@@ -1,6 +1,6 @@
 import { VariantProps, cva } from "cva";
 
-export const paperStyles = cva(
+export const datePickerStyles = cva(
   "",
   {
     variants: {},
@@ -9,4 +9,4 @@ export const paperStyles = cva(
   },
 );
 
-export type PaperStyleProps = VariantProps<typeof paperStyles>;
+export type DatePickerStyleProps = VariantProps<typeof datePickerStyles>;

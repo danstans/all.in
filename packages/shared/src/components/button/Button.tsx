@@ -6,9 +6,26 @@ import { useHover } from "@react-aria/interactions";
 import { mergeProps } from "@react-aria/utils";
 import cn from "classnames";
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  (props, forwardedRef) => {
-    const {
+const Button = forwardRef((props: ButtonProps, forwardedRef) => {
+  const {
+    id,
+    autoFocus,
+    type,
+    children,
+    onClick,
+    isDisabled = false,
+    isLoading,
+    variant,
+    fullWidth,
+    pill,
+  } = props;
+  const ref = useRef<HTMLButtonElement>(null);
+  const buttonRef = forwardedRef || ref;
+
+  const isLoadingOrDisabled = isDisabled || isLoading;
+
+  const { buttonProps } = useButton(
+    {
       id,
       autoFocus,
       type,
@@ -25,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const ref = useRef<HTMLButtonElement>(null);
     const buttonRef = forwardedRef || ref;
 
-    const isLoadingOrDisabled = isDisabled || isLoading;
+  const { hoverProps } = useHover({ isDisabled: isLoadingOrDisabled });
 
     const { buttonProps } = useButton(
       {
