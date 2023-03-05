@@ -1,4 +1,5 @@
 import { ForwardedRef, PropsWithChildren } from "react";
+import { IconType } from "../icon/Icons";
 import type { ButtonStyleProps } from "./Button.styles";
 
 export type ButtonProps = Omit<ButtonStyleProps, "color" | "style"> &
@@ -22,4 +23,6 @@ export type ButtonProps = Omit<ButtonStyleProps, "color" | "style"> &
     isLoading?: boolean;
     /** Controls if this button is disabled */
     isDisabled?: boolean;
+    startIcon?: IconType;
+    endIcon?: IconType;
   }>;

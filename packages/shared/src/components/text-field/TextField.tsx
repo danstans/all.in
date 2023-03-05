@@ -10,7 +10,7 @@ const TextField = forwardRef(
     forwardedRef,
   ): JSX.Element => {
     return (
-      <div className="relative">
+      <div className="relative w-full">
         <input
           onChange={onChange}
           onBlur={onBlur}
@@ -22,7 +22,7 @@ const TextField = forwardRef(
         />
         <label
           htmlFor="floating_outlined"
-          className="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-2"
+          className="absolute text-sm text-gray-500 duration-300 transform -translate-y-[1.15rem] scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-[1.15rem] left-2"
         >
           Floating outlined
         </label>

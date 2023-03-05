@@ -1,5 +1,6 @@
 import { RefObject, forwardRef, useRef } from "react";
 import { ButtonStyleProps, buttonStyles } from "./Button.styles";
+import { Icon } from "../icon/Icons";
 import { ButtonProps } from "./Button.types";
 import { useButton } from "@react-aria/button";
 import { useHover } from "@react-aria/interactions";
@@ -18,6 +19,9 @@ const Button = forwardRef((props: ButtonProps, forwardedRef) => {
     variant,
     fullWidth,
     pill,
+    startIcon,
+    endIcon,
+    position = "default",
   } = props;
   const ref = useRef<HTMLButtonElement>(null);
   const buttonRef = forwardedRef || ref;
@@ -69,7 +73,19 @@ const Button = forwardRef((props: ButtonProps, forwardedRef) => {
         )}
         onClick={onClick}
       >
-        {children}
+      {startIcon && (
+        <Icon
+          icon={startIcon.icon}
+          size={startIcon.size}
+          color={startIcon.color}
+        />
+      )}
+
+      {children}
+
+      {endIcon && (
+        <Icon icon={endIcon.icon} size={endIcon.size} color={endIcon.color} />
+      )}
       </button>
     );
   },

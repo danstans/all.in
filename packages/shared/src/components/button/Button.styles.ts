@@ -32,9 +32,11 @@ export const buttonStyles = cva(
         true: "rounded-full",
         false: "rounded-lg",
       },
-      invert: {
-        true: "filter invert",
-        false: "",
+      position: {
+        left: "rounded-l-lg rounded-r-none",
+        center: "rounded-none",
+        right: "rounded-r-lg rounded-l-none border-l",
+        default: "rounded-lg",
       },
     },
     compoundVariants: [
@@ -60,6 +62,28 @@ export const buttonStyles = cva(
         style: "filled",
         class:
           "bg-secondary-500 text-white filter saturate-150 brightness-90 contrast-150",
+      },
+      {
+        color: ["primary", "secondary"],
+        position: "center",
+        class:
+          "border-l border-r-transparent border-t-transparent border-b-transparent border-gray-400",
+      },
+      {
+        color: ["primary", "secondary"],
+        position: "right",
+        class:
+          "border-t-transparent border-r-transparent border-b-transparent border-gray-400",
+      },
+      {
+        style: "text",
+        position: "center",
+        class: "border-l border-r-transparent",
+      },
+      {
+        style: "text",
+        position: "left",
+        class: "border-r-transparent",
       },
     ],
     defaultVariants: {

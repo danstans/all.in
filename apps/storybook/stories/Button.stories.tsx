@@ -1,12 +1,15 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Button } from "shared";
+import { Button, ButtonGroup } from "shared";
 
 // More on how to set up stories at: https://storybook.js.org/docs/7.0/react/writing-stories/introduction
 const meta = {
   title: "Components/Button",
   component: Button,
   argTypes: { onClick: { action: "clicked" } },
+  parameters: {
+    controls: { disabled: true },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;
@@ -74,5 +77,39 @@ export const Variants: Story = {
         Danger button
       </Button>
     </div>
+  ),
+};
+
+export const ButtonGroups: Story = {
+  render: ({ onClick }) => (
+    <>
+      <ButtonGroup variant="primary">
+        <Button onClick={onClick}>Primary button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Right button</Button>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup variant="secondary">
+        <Button onClick={onClick}>Primary button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Right button</Button>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup variant="tertiary">
+        <Button onClick={onClick}>Primary button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Right button</Button>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup variant="text">
+        <Button onClick={onClick}>Primary button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Middle button</Button>
+        <Button onClick={onClick}>Right button</Button>
+      </ButtonGroup>
+    </>
   ),
 };
