@@ -7,7 +7,7 @@ import { useHover } from "@react-aria/interactions";
 import { mergeProps } from "@react-aria/utils";
 import cn from "classnames";
 
-const Button = forwardRef((props: ButtonProps, forwardedRef) => {
+const Button: React.FC<ButtonProps> = forwardRef((props, forwardedRef) => {
   const {
     id,
     autoFocus,
@@ -74,17 +74,21 @@ const Button = forwardRef((props: ButtonProps, forwardedRef) => {
         onClick={onClick}
       >
       {startIcon && (
-        <Icon
-          icon={startIcon.icon}
-          size={startIcon.size}
-          color={startIcon.color}
-        />
+        <div className="mr-1">
+          <Icon
+            icon={startIcon.icon}
+            size={startIcon.size}
+            color={startIcon.color}
+          />
+        </div>
       )}
 
       {children}
 
       {endIcon && (
-        <Icon icon={endIcon.icon} size={endIcon.size} color={endIcon.color} />
+        <div className="ml-1">
+          <Icon icon={endIcon.icon} size={endIcon.size} color={endIcon.color} />
+        </div>
       )}
       </button>
     );
