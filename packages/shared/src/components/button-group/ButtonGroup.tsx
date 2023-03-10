@@ -1,11 +1,4 @@
-import {
-  Children,
-  ReactElement,
-  ReactFragment,
-  cloneElement,
-  isValidElement,
-} from "react";
-import Button from "../button/Button";
+import { Children, cloneElement, isValidElement } from "react";
 import { ButtonProps } from "../button/Button.types";
 import { buttonGroupStyles } from "./ButtonGroup.styles";
 import { ButtonGroupProps } from "./ButtonGroup.types";
@@ -15,8 +8,6 @@ const ButtonGroup = (props: ButtonGroupProps): JSX.Element => {
   const { children, variant } = props;
 
   const arrayChildren = Children.toArray(children);
-  // const LeftButton = buttons.shift();
-  // const RightButton = buttons.pop();
   return (
     <div className={cn(buttonGroupStyles(props))}>
       {Children.map(arrayChildren, (child, index) => {
