@@ -1,6 +1,7 @@
 import {
   Calendar,
   Clock,
+  Loader2,
   Locate,
   Menu,
   MoreHorizontal,
@@ -18,6 +19,7 @@ const IconsMap = {
   Clock,
   Menu,
   MoreHorizontal,
+  Loader2,
 };
 
 type IconsMapType = keyof typeof IconsMap;
@@ -28,7 +30,7 @@ export type IconType = {
   color?: string;
 };
 
-export const Icon = ({ icon, size = "md", color }: IconType) => {
+export const Icon = ({ icon, size = "sm", color }: IconType) => {
   const Component = IconsMap[icon];
 
   const sizeMap = {
@@ -39,5 +41,11 @@ export const Icon = ({ icon, size = "md", color }: IconType) => {
     xl: 28,
   };
 
-  return <Component color={color} size={sizeMap[size]} />;
+  return (
+    <Component
+      color={color}
+      size={sizeMap[size]}
+      className={icon === "Loader2" && "animate-spin"}
+    />
+  );
 };
