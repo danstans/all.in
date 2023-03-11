@@ -1,15 +1,22 @@
 import { VariantProps, cva } from "cva";
 
 export const buttonStyles = cva(
-  "group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10",
+  "group flex h-min items-center justify-center p-0.5 text-center font-medium focus:z-10 focus:ring-4 font-normal ",
   {
     variants: {
-      variant: {
-        primary:
-          "text-white bg-primary-700 border border-transparent hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 disabled:hover:bg-primary-700 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 dark:disabled:hover:bg-primary-600",
-        secondary: "text-white bg-secondary-800 hover:bg-secondary-900",
-        tertiary: "bg-tertiary-800 hover:bg-tertiary-900",
-        text: "text-gray-900 bg-white  focus:ring-4 focus:ring-blue-300 disabled:hover:bg-white dark:bg-gray-600 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700",
+      color: {
+        primary: "focus:ring-primary-300",
+        secondary: "focus:ring-secondary-300",
+        warning: "bg-yellow-500", // Yellow ? mostly
+        danger: "bg-red-500", // Red mostly
+        // text: "text-gray-900 bg-white  focus:ring-4 focus:ring-blue-300 disabled:hover:bg-white dark:bg-gray-700 dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700",
+        default: "", // Black
+      },
+      style: {
+        filled: "text-white border border-transparent",
+        light: "",
+        outline: "",
+        text: "text-primary-700",
       },
       size: {
         xs: "text-xs px-2 py-1",
@@ -25,16 +32,38 @@ export const buttonStyles = cva(
         true: "rounded-full",
         false: "rounded-lg",
       },
+      invert: {
+        true: "filter invert",
+        false: "",
+      },
     },
     compoundVariants: [
       {
-        variant: "primary",
-        pill: true,
-        class: "hidden",
+        color: "primary",
+        style: "filled",
+        class: "bg-primary-700 text-white",
+      },
+      {
+        color: "primary",
+        style: "light",
+        class:
+          "bg-primary-200 text-primary-700 filter saturate-100 brightness-95 contrast-125",
+      },
+      {
+        color: "primary",
+        style: "outline",
+        class:
+          "text-primary-700 border border border-primary-700 border-opacity-10",
+      },
+      {
+        color: "secondary",
+        style: "filled",
+        class:
+          "bg-secondary-500 text-white filter saturate-150 brightness-90 contrast-150",
       },
     ],
     defaultVariants: {
-      variant: "primary",
+      color: "primary",
       size: "md",
       fullWidth: false,
       pill: false,
