@@ -17,8 +17,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       isDisabled = false,
       isLoading,
       variant,
+      size,
       fullWidth,
       pill,
+      invert,
     } = props;
     const ref = useRef<HTMLButtonElement>(null);
     const buttonRef = forwardedRef || ref;
@@ -35,9 +37,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     const { hoverProps } = useHover({ isDisabled: isLoadingOrDisabled });
-    const [style, size] = variant.split("/") as [
+    const [color, style] = variant.split("/") as [
+      ButtonStyleProps["color"],
       ButtonStyleProps["style"],
-      ButtonStyleProps["size"],
     ];
 
     return (
@@ -45,7 +47,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={buttonRef}
         {...mergeProps(hoverProps, buttonProps)}
         type="button"
-        className={cn(buttonStyles({ style, size, fullWidth, pill }))}
+        className={cn(
+          buttonStyles({ style, color, size, fullWidth, pill, invert }),
+        )}
         onClick={onClick}
       >
         {children}
